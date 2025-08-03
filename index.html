@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!--bootstrap  -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-LN+7fdVzj6u52u30Kp6M/trliBMCMKTyK833zpbD+pXdCLuTusPj697FH4R/5mcr" crossorigin="anonymous">
+    <!-- link .css -->
+    <link rel="stylesheet" href="./index.css">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="d-flex  ">
+        <button class="btn btn-primary col-3 h-25" onclick="toggleaddnewtask()">add new task</button>
+        <div class="addnewtask d-flex flex-column justify-content-around ">
+            <div>
+                <h1> add new task</h1>
+                <input type="text" placeholder="type new task here" class="col-12 form-control" id="newtask">
+            </div>
+            <div class="d-flex justify-content-end col-12 gap-2 p-1">
+                <button type="button" class="btn btn-primary col-2"  onclick="addnewtasks()">add new task</button>
+            </div>
+        </div>
+    </div>
+    <section class="col-12 d-flex gap-2 ">
+        <article class="col-4"> 
+            <div class="d-flex flex-column gap-3">
+                <button class="col-12 d-flex  p-2 alltask" onclick="togglealltask()">all</button>
+                <button class="col-12 d-flex  p-2 todotask" onclick="toggletodotask()">to-do </button>
+                <button class="col-12 d-flex  p-2" onclick="togglecompletedtask()" >completed</button>
+            </div>
+        </article>
+        <div class="h-100 spes"></div>
+        <aside class="col-7" >
+            <div class="lestall d-flex flex-column col-12 h-100">
+                <div class="col-12 d-flex justify-content-between p-3">
+                    <h3>gem</h3>
+                    <input type="checkbox">
+                </div>
+            </div>
+            <div class="todolest d-none flex-column col-12 h-100">
+
+            </div>
+            <div class="completedlest d-none flex-column col-12 h-100">
+
+            </div>
+        </aside>
+    </section>
+
+
+
+    <!--  .js -->
+    <script src="./index.js"></script>
+    <!-- bootstrap.js -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.7/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ndDqU0Gzau9qJ1lfW4pNLlhNTkCfHzAVBReH9diLvGRem5+R9g2FzA8ZGN954O5Q"
+        crossorigin="anonymous"></script>
+</body>
+
+</html>
