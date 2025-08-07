@@ -3,13 +3,13 @@ let tabletbody = document.querySelector('table tbody');
 
 // creat task
 let tasks = [
-    { taskname: "go to gem", taskDescription: "cardio", taskstatus: true },
-    { taskname: "go to gem", taskDescription: "cardio", taskstatus: true },
-    { taskname: "go to gem", taskDescription: "cardio", taskstatus: false },
-    { taskname: "go to gem", taskDescription: "cardio", taskstatus: false },
-    { taskname: "go to gem", taskDescription: "cardio", taskstatus: true },
-    { taskname: "go to gem", taskDescription: "cardio", taskstatus: true },
-    { taskname: "go to gem", taskDescription: "cardio", taskstatus: true },
+    // { taskname: "go to gem", taskDescription: "cardio", taskstatus: true },
+    // { taskname: "go to gem", taskDescription: "cardio", taskstatus: true },
+    // { taskname: "go to gem", taskDescription: "cardio", taskstatus: false },
+    // { taskname: "go to gem", taskDescription: "cardio", taskstatus: false },
+    // { taskname: "go to gem", taskDescription: "cardio", taskstatus: true },
+    // { taskname: "go to gem", taskDescription: "cardio", taskstatus: true },
+    // { taskname: "go to gem", taskDescription: "cardio", taskstatus: true },
 ];
 let displaytask = () => {
     tabletbody.innerHTML = '';
