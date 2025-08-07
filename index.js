@@ -73,7 +73,7 @@ let modaluppdate = document.querySelector('.modaluppdate');
 let nametask = document.querySelector('#nametask');
 let nameDescription = document.querySelector('#nameDescription');
 let numberadd = document.querySelector('#numberadd');
-let btnup = document.querySelector('#btnup')
+let btnup = document.querySelector('#btnup');
 
 let showmymodalup = () => {
     modaluppdate.style.display = "flex";
