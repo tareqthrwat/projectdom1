@@ -1,93 +1,105 @@
-// #-----------------------------------------------------------------#
-//                          add new task
-// #-----------------------------------------------------------------#
-let addnewtaskindex = true;
-let addnewtask = document.querySelector('.addnewtask');
-// #-----------------------------------------------------------------#
-//                          task all task
-// #-----------------------------------------------------------------#
-let alltaskindex = true;
-let lestall = document.querySelector('.lestall')
-// #-----------------------------------------------------------------#
-//                          todo lest
-// #-----------------------------------------------------------------#
-let todolestindex = false;
-let todolest = document.querySelector('.todolest')
-// #-----------------------------------------------------------------#
-//                          completed lest 
-// #-----------------------------------------------------------------#
-let completedlestindex = false;
-let completedlest = document.querySelector('.completedlest')
-// #-----------------------------------------------------------------#
-let checkboxindex = true;
-let checkbox = document.querySelector('input[type="checkbox"]')
-// ------------------------------------------------------------------#
+//---------- select tbody---------------------
+let tabletbody = document.querySelector('table tbody');
 
-//                      add task
-let addnewtasks = () => {
-    let newtask = document.querySelector('#newtask');
-    let el = `
-        <div class="col-12 d-flex justify-content-between p-3">
-            <h3>${newtask.value}</h3>
-            <input type="checkbox">
-        </div>
-    `
-    lestall.innerHTML += el;
+// creat task
+let tasks = [
+    { taskname: "go to gem", taskDescription: "cardio", taskstatus: true },
+    { taskname: "go to gem", taskDescription: "cardio", taskstatus: true },
+    { taskname: "go to gem", taskDescription: "cardio", taskstatus: false },
+    { taskname: "go to gem", taskDescription: "cardio", taskstatus: false },
+    { taskname: "go to gem", taskDescription: "cardio", taskstatus: true },
+    { taskname: "go to gem", taskDescription: "cardio", taskstatus: true },
+    { taskname: "go to gem", taskDescription: "cardio", taskstatus: true },
+];
+let displaytask = () => {
+    tabletbody.innerHTML = '';
+    tasks.forEach((el, index) => {
+        tabletbody.innerHTML += `
+            <tr>
+                <td>${index + 1}</td>
+                <td>${el.taskname}</td>
+                <td>${el.taskDescription}</td>
+                <td>
+                   <button onclick="toggleupdetetask(${index})" class="btn ${el.taskstatus == true ? 'btn-info' : ' btn-danger'}">
+                        ${el.taskstatus == true ? 'done' : ' created '}
+                   </button>
+                </td>
+                <td class="d-flex gap-1">
+                    <button  onclick=" removetask(${index})"  class="btn btn-danger d-flex gap-1" id="Delete"> <i
+                            class="bi bi-trash-fill"></i></button>
+                    <button class="btn btn-light" onclick="sendtaskmodal(${index}) " id="Edittasks"><i class="bi bi-pencil"></i></button>
+                </td>
+            </tr>
+        `
+    })
+};
+displaytask()
+// ------------------- select modal -----------------
+let mymodal = document.querySelector('.modal');
+let showmymodal = () => {
+    mymodal.style.display = "flex";
 }
-let checkboxtask = () => {
-    lestall.forEach
+let clossmodal = () => {
+    mymodal.style.display = "none";
 }
-//                       addnewtask
-let toggleaddnewtask = () => {
-    if (addnewtaskindex == true) {
-        addnewtaskindex = false;
-        addnewtask.classList.remove('d-flex');
-        addnewtask.classList.add('d-none');
-    } else {
-        addnewtaskindex = true;
-        addnewtask.classList.add('d-flex');
-        addnewtask.classList.remove('d-none');
-    }
+// ----------- select add task modal ----------------------
+let Nemeadd = document.querySelector('#Nemeadd');
+let Descriptionadd = document.querySelector('#Descriptionadd');
+let btnadd = document.querySelector('#btnadd');
+
+let addtasks = () => {
+    let Nemeaddindex = Nemeadd.value;
+    let Descriptionaddindex = Descriptionadd.value;
+    let newobj = { taskname: Nemeaddindex, taskDescription: Descriptionaddindex, taskstatus: false };
+    tasks.push(newobj)
+    displaytask()
+    Nemeadd.value = '';
+    Descriptionadd.value = '';
 }
-//                          task all task
-let togglealltask = () => {
 
-    if (alltaskindex == true) {
-        alltaskindex = false;
-        lestall.classList.remove('d-flex');
-        lestall.classList.add('d-none');
-    } else {
-        alltaskindex = true;
-        lestall.classList.add('d-flex');
-        lestall.classList.remove('d-none');
+btnadd.addEventListener('click', () => {
+    addtasks()
+    clossmodal()
+})
 
-    }
+// -------------- select updete task status --------------------------
+let toggleupdetetask = (seletedIndex) => {
+    tasks[seletedIndex].taskstatus = !tasks[seletedIndex].taskstatus;
+    displaytask()
 }
-//                          todo lest
-let toggletodotask = () => {
+// ----------------------- modal upp date- ----------------------------
+let modaluppdate = document.querySelector('.modaluppdate');
+// ------------------ send data to modal ----------------------------
+let nametask = document.querySelector('#nametask');
+let nameDescription = document.querySelector('#nameDescription');
+let numberadd = document.querySelector('#numberadd');
+let btnup = document.querySelector('#btnup')
 
-    if (todolestindex == false) {
-        todolestindex = true;
-        todolest.classList.add('d-flex');
-        todolest.classList.remove('d-none');
+let showmymodalup = () => {
+    modaluppdate.style.display = "flex";
 
-    } else {
-        todolestindex = false;
-        todolest.classList.remove('d-flex');
-        todolest.classList.add('d-none');
-    }
 }
-//                          completed lest 
-let togglecompletedtask = () => {
+let clossmodalup = () => {
+    modaluppdate.style.display = "none";
+}
 
-    if (completedlestindex == false) {
-        completedlestindex = true;
-        completedlest.classList.add('d-flex');
-        completedlest.classList.remove('d-none');
-
-    } else {
-        completedlestindex = false;
-        completedlest.classList.remove('d-flex');
-        completedlest.classList.add('d-none');
-    }
+let sendtaskmodal = (seletedIndex) => {
+    numberadd.value = seletedIndex + 1;
+    nametask.value = tasks[seletedIndex].taskname;
+    nameDescription.value = tasks[seletedIndex].taskDescription;
+    showmymodalup()
+}
+// ---------up date task -------------------
+let updatetotask = () => {
+    tasks[numberadd.value - 1].taskname = nametask.value;
+    tasks[numberadd.value - 1].taskDescription = nameDescription.value;
+    displaytask()
+}
+btnup.addEventListener('click', () => {
+    updatetotask()
+    clossmodalup()
+});
+let removetask = (seletedIndex) => {
+    tasks.splice(seletedIndex, 1);
+    displaytask()
 }
